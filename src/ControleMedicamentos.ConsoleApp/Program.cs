@@ -2,6 +2,7 @@
 using ControleMedicamentos.ConsoleApp.ModuloPaciente;
 using ControleMedicamentos.ConsoleApp.ModuloRequisicoes;
 using GestaoEquipamentos.ConsoleApp.Compartilhado;
+using GestaoEquipamentos.ConsoleApp.ModuloPaciente;
 
 namespace ControleMedicamentos.ConsoleApp;
 
@@ -10,6 +11,7 @@ internal class Program
     static void Main(string[] args)
     {
         TelaMedicamentos telaMedicamentos = new TelaMedicamentos();
+        TelaPaciente telaPaciente = new TelaPaciente();
 
         bool opcaoSairEscolhida = true;
 
@@ -20,36 +22,60 @@ internal class Program
             switch (opcaoEscolhida.ToString().ToUpper())
             {
                 case "1":
-                    string opcao = telaMedicamentos.ApresentarMenu();
+                    string opcao1 = telaMedicamentos.ApresentarMenu();
 
-                    if (opcao == "1")
+                    if (opcao1 == "1")
                     {
                         telaMedicamentos.CadastrarMedicamento();
                     }
-                    else if (opcao == "2")
+                    else if (opcao1 == "2")
                     {
                         telaMedicamentos.EditarEquipamento();
                     }
-                    else if (opcao == "3")
+                    else if (opcao1 == "3")
                     {
                         telaMedicamentos.ExcluirMedicamento();
                     }
-                    else if (opcao == "4")
+                    else if (opcao1 == "4")
                     {
                         telaMedicamentos.VisualizarEquipamentos(true);
                     }
                     else
                     {
                         Console.ForegroundColor = ConsoleColor.Red;
-                        Console.WriteLine("Por favot indira uma opção válida!!!");
+                        Console.WriteLine("Por favor insira uma opção válida!!!");
                         Console.ResetColor();
 
                         EnterParaContinuar();
                     }
                     break;
                 case "2":
-                    Console.WriteLine("Controle de pacientes");
-                    EnterParaContinuar();
+                    string opcao2 = telaPaciente.ApresentarMenu();
+
+                    if (opcao2 == "1")
+                    {
+                        telaPaciente.CadastrarPaciente();
+                    }
+                    else if (opcao2 == "2")
+                    {
+                        telaPaciente.EditarPaciente();
+                    }
+                    else if (opcao2 == "3")
+                    {
+                        telaPaciente.ExcluirPaciente();
+                    }
+                    else if (opcao2 == "4")
+                    {
+                        telaPaciente.VisualizarPaciente(true);
+                    }
+                    else
+                    {
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.WriteLine("Por favor insira uma opção válida!!!");
+                        Console.ResetColor();
+
+                        EnterParaContinuar();
+                    }
                     break;
                 case "3":
                     Console.WriteLine("Controle de requisições");
@@ -87,7 +113,7 @@ internal class Program
         Console.WriteLine();
 
         Console.WriteLine("1 - Controle de Medicamentos");
-        Console.WriteLine("2 - Controle de Pacientes [Não disponível]");
+        Console.WriteLine("2 - Controle de Pacientes");
         Console.WriteLine("3 - Controle de Requisições [Não disponível]");
         Console.WriteLine("S - Sair");
 
